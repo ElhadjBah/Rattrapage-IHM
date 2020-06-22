@@ -1,0 +1,35 @@
+p {
+  font-family: Lato;
+}
+
+table {
+  border-collapse: collapse;
+}
+
+table td {
+  border: solid black 1px;
+  width: 20px;
+  height: 20px;
+  align-content: center;
+  text-align: center;
+}
+
+table.s9, table.s4 {
+  border: solid black 3px;
+}
+
+table.s9 tr:nth-child(3n), table.s4 tr:nth-child(2n) {
+  border-bottom: solid black 3px;
+}
+
+table.s9 tr td:nth-child(3n), table.s4 tr td:nth-child(2n){
+  border-right: solid black 3px;
+}
+
+.selected {
+  background: lightgreen;
+}
+
+td.playable {
+  background-color: lightgreen;
+}

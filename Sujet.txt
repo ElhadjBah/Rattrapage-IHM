@@ -1,0 +1,18 @@
+Sudoku :
+  renvoyer à une page d'explication des règles
+  renvoyer à un site pour essayer un sudoku.
+  Indiquer le stackblitz
+  demander à se connecter sur stackblitz
+  demander à faire un fork
+  
+
+Etape 1 :
+  Composant app
+    En utilisant le service sudoku.service
+    Récupérer le plateau
+    Afficher le plateau courant
+  
+  Service Sudoku
+    async generateBoard
+
+Créer plateau
