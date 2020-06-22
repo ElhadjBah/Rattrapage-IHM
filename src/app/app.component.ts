@@ -1,7 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 import {SudokuService, BOARD} from './sudoku.service';
 import {getRandomConfig} from './generator';
-import {Observable, BehaviorSubject} from 'rxjs';
+import {Observable, BehaviorSubject, Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
 
 @Component({
@@ -9,7 +9,7 @@ import {map} from 'rxjs/operators';
   templateUrl: './app.component.html',
   styleUrls: [ './app.component.css' ]
 })
-export class AppComponent  {
+export class AppComponent {
   
   constructor(public sudokuService: SudokuService) {
   }
@@ -17,12 +17,15 @@ export class AppComponent  {
   size: number;
   gridClass: string;
   selectedButtonIndex: number;
+  boardSubscription: Subscription;
 
   ngOnInit(){
-    this.getData();
-    
+    this.getData(); 
   }
 
+  ngOnDestroy() {
+    this.boardSubscription.unsubscribe();
+  }
   //Bouton de génération de plateau
   generateBoard() {
     this.sudokuService.generateBoard();
@@ -33,11 +36,9 @@ export class AppComponent  {
     this.selectedButtonIndex = index+1;
   }
 
-  //Lorsqu'on clique sur "Effacer"
+  //Lorsqu'on clique sur "Effacer": ne marche pas encore
   onDeleteSelected(){
     this.selectedButtonIndex = null;
-    const lastBoard = this.sudokuService.getLastBoard();
-    this.processData(lastBoard);
   }
 
   isPlayableCell(i: number, j: number, v: number): boolean{
@@ -49,7 +50,7 @@ export class AppComponent  {
   }
 
   getData(){
-     this.sudokuService.boardObs.subscribe((result)=> {
+     this.boardSubscription = this.sudokuService.boardObs.subscribe((result)=> {
       this.processData(result);
     });
   }

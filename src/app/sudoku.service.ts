@@ -11,6 +11,7 @@ export interface BOARD {
   providedIn: "root"
 })
 export class SudokuService {
+  builtBoard: BOARD; // Etat initial du plateau
   private boardSubj = new BehaviorSubject<BOARD>({
     size: 9,
     grid: [
@@ -38,11 +39,11 @@ export class SudokuService {
   async generateBoard() {
     // a completer
     const PConfig: CONFIG = await getRandomConfig();
-    const builtBoard: BOARD = {
+    this.builtBoard = {
       size: Number.parseInt(PConfig.size),
       grid: this.buildGrid(PConfig)
     };
-    this.boardSubj.next(builtBoard);
+    this.boardSubj.next({...this.builtBoard});
   }
 
   // canPlay renvoie vrai si, dans le plateau B, il est possible d'inscrire la valeur v
@@ -262,7 +263,7 @@ export class SudokuService {
     return array;
   }
 
-  getLastBoard(): BOARD{
-    return this.boardSubj.value;
+  resetBoard(): BOARD{
+    return this.builtBoard;
   }
 }
