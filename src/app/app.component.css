@@ -33,3 +33,19 @@ table.s9 tr td:nth-child(3n), table.s4 tr td:nth-child(2n){
 td.playable {
   background-color: lightgreen;
 }
+
+#generator {
+  margin-bottom: 10px;
+}
+
+#choices{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  width: 235px;
+  max-width: 235px;
+}
+
+#choices>button.active{
+   background: lightgreen;
+}

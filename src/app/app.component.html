@@ -1,23 +1,28 @@
 <h1>Sudoku L3, session 2 CL&IHM</h1>
 
 <p>
-  Examen de session 2 de CL&IHM
-  (voir <a href="https://docs.google.com/document/d/1GxlmpM3JKmAiDk7l5VjfOV_X5f88ZaIqhDcxHiU76Bo/edit?usp=sharing">
-          https://docs.google.com/document/d/1GxlmpM3JKmAiDk7l5VjfOV_X5f88ZaIqhDcxHiU76Bo/edit?usp=sharing
-        </a>
-  ).
+	Examen de session 2 de CL&IHM
+	(voir <a href="https://docs.google.com/document/d/1GxlmpM3JKmAiDk7l5VjfOV_X5f88ZaIqhDcxHiU76Bo/edit?usp=sharing">
+		https://docs.google.com/document/d/1GxlmpM3JKmAiDk7l5VjfOV_X5f88ZaIqhDcxHiU76Bo/edit?usp=sharing
+	</a>
+	).
 </p>
 
-<hr/>
-<p>Insérez votre template ci dessous.</p>
+<hr />
+<button id="generator" (click)="generateBoard()">Générer un plateau!</button>
 
 <table [ngClass]="gridClass">
-  
-    <tr *ngFor="let g of grid; let i = index;">
 
-      <td *ngFor="let g of grid; let j = index;">
-        <ng-container *ngIf="grid[i][j] != 0">{{grid[i][j]}}
-        </ng-container>
-      </td>
-    </tr>
+	<tr *ngFor="let g of grid; let i = index;">
+
+		<td *ngFor="let g of grid; let j = index;" >
+			<ng-container *ngIf="grid[i][j] != 0">{{grid[i][j]}}
+			</ng-container>
+		</td>
+	</tr>
 </table>
+
+<div id="choices">
+	<button *ngFor="let g of grid; let i = index;" (click)="onOptionSelected(i)" [class.selected]= "selectedButtonIndex==i">{{i+1}}</button>
+	<button (click)= "onDeleteSelected()">0: Effacer</button>
+</div>
