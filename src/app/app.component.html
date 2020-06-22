@@ -10,3 +10,14 @@
 
 <hr/>
 <p>Insérez votre template ci dessous.</p>
+
+<table class="table.s9">
+  
+    <tr *ngFor="let g of grid; let i = index;">
+
+      <td *ngFor="let g of grid; let j = index;">
+        <ng-container *ngIf="grid[i][j] != 0">{{grid[i][j]}}
+        </ng-container>
+      </td>
+    </tr>
+</table>

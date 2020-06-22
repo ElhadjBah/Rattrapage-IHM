@@ -11,7 +11,16 @@ import {map} from 'rxjs/operators';
 })
 export class AppComponent  {
   
-  constructor() {
+  constructor(public sudokuService: SudokuService) {
+  }
+  grid: number [][];
+  size: number;
+
+  ngOnInit(){
+    this.sudokuService.boardObs.subscribe((result)=> {
+      this.grid = result.grid;
+      this.size = result.size;
+    });
   }
 
 }
