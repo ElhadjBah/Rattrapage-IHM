@@ -114,7 +114,7 @@ export class SudokuService {
                 index_column < 3 && result;
                 index_column++
               ) {
-                if (this.boardSubj.value.grid[i][j] == v) {
+                if (this.boardSubj.value.grid[index_line][index_column] == v) {
                   result = false;
                 }
               }
@@ -124,7 +124,7 @@ export class SudokuService {
                 index_column < 6 && result;
                 index_column++
               ) {
-                if (this.boardSubj.value.grid[i][j] == v) {
+                if (this.boardSubj.value.grid[index_line][index_column] == v) {
                   result = false;
                 }
               }
@@ -134,7 +134,7 @@ export class SudokuService {
                 index_column < 9 && result;
                 index_column++
               ) {
-                if (this.boardSubj.value.grid[i][j] == v) {
+                if (this.boardSubj.value.grid[index_line][index_column] == v) {
                   result = false;
                 }
               }
@@ -148,7 +148,7 @@ export class SudokuService {
                 index_column < 3 && result;
                 index_column++
               ) {
-                if (this.boardSubj.value.grid[i][j] == v) {
+                if (this.boardSubj.value.grid[index_line][index_column] == v) {
                   result = false;
                 }
               }
@@ -158,7 +158,7 @@ export class SudokuService {
                 index_column < 6 && result;
                 index_column++
               ) {
-                if (this.boardSubj.value.grid[i][j] == v) {
+                if (this.boardSubj.value.grid[index_line][index_column] == v) {
                   result = false;
                 }
               }
@@ -168,7 +168,7 @@ export class SudokuService {
                 index_column < 9 && result;
                 index_column++
               ) {
-                if (this.boardSubj.value.grid[i][j] == v) {
+                if (this.boardSubj.value.grid[index_line][index_column] == v) {
                   result = false;
                 }
               }
@@ -185,7 +185,7 @@ export class SudokuService {
                 index_column < 2 && result;
                 index_column++
               ) {
-                if (this.boardSubj.value.grid[i][j] == v) {
+                if (this.boardSubj.value.grid[index_line][index_column] == v) {
                   result = false;
                 }
               }
@@ -195,7 +195,7 @@ export class SudokuService {
                 index_column < 4 && result;
                 index_column++
               ) {
-                if (this.boardSubj.value.grid[i][j] == v) {
+                if (this.boardSubj.value.grid[index_line][index_column] == v) {
                   result = false;
                 }
               }
@@ -209,7 +209,7 @@ export class SudokuService {
                 index_column < 2 && result;
                 index_column++
               ) {
-                if (this.boardSubj.value.grid[i][j] == v) {
+                if (this.boardSubj.value.grid[index_line][index_column] == v) {
                   result = false;
                 }
               }
@@ -219,7 +219,7 @@ export class SudokuService {
                 index_column < 4 && result;
                 index_column++
               ) {
-                if (this.boardSubj.value.grid[i][j] == v) {
+                if (this.boardSubj.value.grid[index_line][index_column] == v) {
                   result = false;
                 }
               }
@@ -260,5 +260,9 @@ export class SudokuService {
       );
     }
     return array;
+  }
+
+  getLastBoard(): BOARD{
+    return this.boardSubj.value;
   }
 }

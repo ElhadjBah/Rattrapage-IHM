@@ -15,7 +15,7 @@
 
 	<tr *ngFor="let g of grid; let i = index;">
 
-		<td *ngFor="let g of grid; let j = index;" >
+		<td *ngFor="let g of grid; let j = index;" [class.playable]="grid[i][j] === 0 &&isPlayableCell(i,j,selectedButtonIndex)" (click)="onSelectedCell(i,j,selectedButtonIndex)">
 			<ng-container *ngIf="grid[i][j] != 0">{{grid[i][j]}}
 			</ng-container>
 		</td>
@@ -23,6 +23,6 @@
 </table>
 
 <div id="choices">
-	<button *ngFor="let g of grid; let i = index;" (click)="onOptionSelected(i)" [class.selected]= "selectedButtonIndex==i">{{i+1}}</button>
+	<button *ngFor="let g of grid; let i = index;" (click)="onOptionSelected(i)" [class.selected]= "selectedButtonIndex==i+1">{{i+1}}</button>
 	<button (click)= "onDeleteSelected()">0: Effacer</button>
 </div>

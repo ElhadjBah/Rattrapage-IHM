@@ -19,17 +19,8 @@ export class AppComponent  {
   selectedButtonIndex: number;
 
   ngOnInit(){
-    /* this.sudokuService.generateBoard(); */
-    this.sudokuService.boardObs.subscribe((result)=> {
-      this.grid = result.grid;
-      this.size = result.size;
-      if (this.size == 9) {
-        this.gridClass = 's9';
-      } else if (this.size == 4) {
-        this.gridClass = 's4'
-      }
-    });
-    this.sudokuService.play(0, 1, 7);
+    this.getData();
+    
   }
 
   //Bouton de génération de plateau
@@ -39,16 +30,37 @@ export class AppComponent  {
 
   //Lorsqu'on choisi un chiffre
   onOptionSelected(index: number){
-    this.selectedButtonIndex = index;
+    this.selectedButtonIndex = index+1;
   }
 
   //Lorsqu'on clique sur "Effacer"
   onDeleteSelected(){
     this.selectedButtonIndex = null;
+    const lastBoard = this.sudokuService.getLastBoard();
+    this.processData(lastBoard);
   }
 
   isPlayableCell(i: number, j: number, v: number): boolean{
-    console.log(this.sudokuService.canPlay(i,j,v),v);
     return this.sudokuService.canPlay(i,j,v);
+  }
+
+  onSelectedCell(i: number, j: number, v: number){
+   this.sudokuService.play(i, j, this.selectedButtonIndex);
+  }
+
+  getData(){
+     this.sudokuService.boardObs.subscribe((result)=> {
+      this.processData(result);
+    });
+  }
+
+  processData(board: BOARD){
+    this.grid = board.grid;
+      this.size = board.size;
+      if (this.size == 9) {
+        this.gridClass = 's9';
+      } else if (this.size == 4) {
+        this.gridClass = 's4'
+      }
   }
 }
