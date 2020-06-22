@@ -35,7 +35,7 @@ export class SudokuService {
    * qui est spécifiée dans le fichier generator.ts
    */
   async generateBoard() {
-    // à compléter
+    // a completer
   }
 
   // canPlay renvoie vrai si, dans le plateau B, il est possible d'inscrire la valeur v
@@ -178,7 +178,6 @@ export class SudokuService {
       }
     }
     
-    console.log(result);
     return result;
   }
 
@@ -188,12 +187,6 @@ export class SudokuService {
     if (this.canPlay(i,j,nv)) {
       this.boardSubj.value.grid[i][j] = nv;
       this.boardSubj.next(this.boardSubj.value);
-      console.log('hfhehhej');
-      for (let i = 0; i<this.boardSubj.value.size;i++){
-        for (let j = 0; j<this.boardSubj.value.size;j++){
-          console.log(this.boardSubj.value.grid[i][j]);
-        }
-      }
     }
   }
 
