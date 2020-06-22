@@ -27,7 +27,7 @@ export class AppComponent  {
         this.gridClass = 's4'
       }
     });
-    this.sudokuService.canPlay(0, 3, 4);
+    this.sudokuService.play(0, 1, 1);
   }
 
 }

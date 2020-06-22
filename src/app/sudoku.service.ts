@@ -42,31 +42,159 @@ export class SudokuService {
   // v n'est pas présent sur la ligne i, ni sur la colonne j, ni dans le bloc contenant la case (i, j)
   // Le plateau courant est accessible via this.boardSubj.value
   canPlay(i: number, j: number, v: number): boolean {
-    // à compléter
     // on divise la grille en différents blocs
-    if (this.boardSubj.value.size == 9){
-      let m02_02 = [[0, 0, 0],[0, 0, 0],[0, 0, 0]];
-      for(let i = 0; i < this.boardSubj.value.size/3; i++) {
-        for(let j = 0; j < this.boardSubj.value.size/3; j++) {
-          m02_02[i][j] = this.boardSubj.value.grid[i][j];
+    let result = true;
+    let size = this.boardSubj.value.size;
+    //on commence par verifier s'il n'est pas présent sur la ligne i
+    for(let index_column = 0; index_column < size && result; index_column++) {
+      if (this.boardSubj.value.grid[i][index_column]== v) {
+        result = false;
+      }
+    }
+
+    //Si on ne trouve pas v sur la ligne i, on verifie s'il n'est pas présent sur la colonne j
+    if (result){
+      for(let index_line = 0; index_line < size && result; index_line++) {
+        if (this.boardSubj.value.grid[index_line][j]== v) {
+          result = false;
         }
       }
-      for (let i = 0; i<3;i++){
-        console.log('hhh');
-        console.log(m02_02[0][2]);
-      }
-    } else if (this.boardSubj.value.size == 4) {
+    }
 
+    //Si v n'est ni dans i, ni dans j, on verifie s n'il n'est pas present dans le bloc contenant la case (i,j)
+    // pour les grilles de taille 9
+    if (result){
+      if (size == 9){
+        if (i>=0 && i <= 2){
+          for(let index_line = 0; index_line < 3 && result; index_line++) {
+            if (j>=0 && j<=2) {
+              for(let index_column = 0; index_column < 3 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+            else if (j>=3 && j<=5) {
+              for(let index_column = 3; index_column < 6 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+            else if (j>=6 && j<=8) {
+              for(let index_column = 6; index_column < 9 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+          }
+        }else if (i>=3 && i <= 5){
+          for(let index_line = 3; index_line < 6 && result; index_line++) {
+            if (j>=0 && j<=2) {
+              for(let index_column = 0; index_column < 3 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+            else if (j>=3 && j<=5) {
+              for(let index_column = 3; index_column < 6 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+            else if (j>=6 && j<=8) {
+              for(let index_column = 6; index_column < 9 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+          }
+        }else if (i>=6 && i <= 8){
+          for(let index_line = 6; index_line < 9 && result; index_line++) {
+            if (j>=0 && j<=2) {
+              for(let index_column = 0; index_column < 3 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+            else if (j>=3 && j<=5) {
+              for(let index_column = 3; index_column < 6 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+            else if (j>=6 && j<=8) {
+              for(let index_column = 6; index_column < 9 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+          }
+        }  
+      } else if (size == 4) {
+        // pour les grilles de taille 4
+        if (i>=0 && i <= 1){
+          for(let index_line = 0; index_line < 2 && result; index_line++) {
+            if (j>=0 && j<=1) {
+              for(let index_column = 0; index_column < 2 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+            else if (j>=2 && j<=3) {
+              for(let index_column = 2; index_column < 4 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+          }
+        }else if (i>=2 && i <= 3){
+          for(let index_line = 2; index_line < 4 && result; index_line++) {
+            if (j>=0 && j<=1) {
+              for(let index_column = 0; index_column < 2 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+            else if (j>=2 && j<=3) {
+              for(let index_column = 2; index_column < 4 && result; index_column++) {
+                if (this.boardSubj.value.grid[i][j]== v) {
+                  result = false;
+                }
+              }
+            }
+          }
+        }
+      }
     }
     
-    if (this.boardSubj.value[i])
-    return false;
+    console.log(result);
+    return result;
   }
 
   // play(i, j, v) inscrit la valeur v dans la case (i, j) si canplay(i, j, v)
   // play publie un nouveau plateau dans ce cas via la méthode next de l'attribut boardSubj
   play(i: number, j: number, nv: number) {
-    // à compléter
+    if (this.canPlay(i,j,nv)) {
+      this.boardSubj.value.grid[i][j] = nv;
+      this.boardSubj.next(this.boardSubj.value);
+      console.log('hfhehhej');
+      for (let i = 0; i<this.boardSubj.value.size;i++){
+        for (let j = 0; j<this.boardSubj.value.size;j++){
+          console.log(this.boardSubj.value.grid[i][j]);
+        }
+      }
+    }
   }
 
 }
