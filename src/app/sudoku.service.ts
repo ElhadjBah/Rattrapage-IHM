@@ -43,6 +43,13 @@ export class SudokuService {
   // Le plateau courant est accessible via this.boardSubj.value
   canPlay(i: number, j: number, v: number): boolean {
     // à compléter
+    console.log('hello');
+    // on divise la grille en différents blocs
+    for(let i = 0; i < this.boardSubj.value.size; i++) {
+      
+    }
+    
+    if (this.boardSubj.value[i])
     return false;
   }
 
