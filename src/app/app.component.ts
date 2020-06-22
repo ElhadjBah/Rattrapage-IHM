@@ -15,11 +15,17 @@ export class AppComponent  {
   }
   grid: number [][];
   size: number;
+  gridClass: string;
 
   ngOnInit(){
     this.sudokuService.boardObs.subscribe((result)=> {
       this.grid = result.grid;
       this.size = result.size;
+      if (this.size == 9) {
+        this.gridClass = 's9';
+      } else if (this.size == 4) {
+        this.gridClass = 's4'
+      }
     });
   }
 
